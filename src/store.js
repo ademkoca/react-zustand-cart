@@ -3,7 +3,7 @@ import { persist, devtools } from 'zustand/middleware';
 
 const itemsStore =
   //   persist(
-  (set, get) => ({
+  (set) => ({
     items: [],
     addToCart: (item) => {
       set((state) => ({ items: [item, ...state.items] }));
@@ -15,11 +15,6 @@ const itemsStore =
     },
     removeAllItems: () => set({ items: [] }),
   });
-//     {
-//       name: 'items',
-//       getStorage: () => localStorage,
-//     }
-//   )
 
 export const useItemseStore = create(
   devtools(persist(itemsStore, { name: 'items' }))
