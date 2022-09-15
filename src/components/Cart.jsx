@@ -40,7 +40,7 @@ const Cart = () => {
     >
       <div className="offcanvas-header">
         <h5 className="offcanvas-title" id="offcanvasExampleLabel">
-          Your Cart: ${total}
+          Your Cart{total === 0 ? ' is empty' : ': $' + total}
         </h5>
         <button
           type="button"
@@ -51,11 +51,7 @@ const Cart = () => {
       </div>
       <div className="offcanvas-body">
         {items.map((item) => (
-          <div
-            className="card"
-            style={{ width: '100%' }}
-            key={item.id}
-          >
+          <div className="card my-3" style={{ width: '100%' }} key={item.id}>
             <img
               src={`images/${item.itemImg}`}
               className="card-img-top"
@@ -75,6 +71,9 @@ const Cart = () => {
             </div>
           </div>
         ))}
+        {total !== 0 && (
+          <button className="btn btn-success w-100">Peoceed to checkout</button>
+        )}
       </div>
     </div>
   );

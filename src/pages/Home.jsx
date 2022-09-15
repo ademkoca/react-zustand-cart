@@ -8,7 +8,7 @@ const Home = () => {
   const [category, setCategory] = useState('');
   // console.log(category);
   const filtered = products.filter((p) => p.category === category);
-  console.log(filtered);
+  // console.log(filtered);
   // useEffect(() => {
   //   setContent(content.filter((product) => product.category === category));
   // }, []);
@@ -55,7 +55,7 @@ const Home = () => {
           </ul>
         </div>
       </div>
-      <div className="container-lg d-flex flex-wrap row justify-content-start mw-100 p-1">
+      <div className="container-lg d-flex flex-wrap row justify-content-around justify-content-lg-start mw-100 p-1 mx-0 mx-lg-2">
         {filtered.length === 0 || category === ''
           ? products.map((p) => <HomeProduct product={p} key={p.id} />)
           : filtered.map((f) => <HomeProduct product={f} key={f.id} />)}

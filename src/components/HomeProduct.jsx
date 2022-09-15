@@ -15,7 +15,7 @@ const HomeProduct = ({ product }) => {
   };
   return (
     <div
-      className="card col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 col-xxl-3"
+      className="card col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 col-xxl-3 p-2 my-1"
       //   style={{ width: '18rem' }}
       key={product.id}
     >
