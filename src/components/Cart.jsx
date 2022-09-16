@@ -4,10 +4,11 @@ import { useItemseStore } from '../store';
 const Cart = () => {
   const [openCart, setOpenCart] = useState(false);
   const items = useItemseStore((state) => state.items);
+
   let total = 0;
-  items.forEach((item) => (total += item.itemPrice));
+  items.forEach((item) => (total += item.itemPrice * item.qty));
   // console.log(total);
-  //   console.log(items);
+  // console.log(items);
   const removeItem = useItemseStore((state) => state.removeItem);
   return (
     // <div>
@@ -40,7 +41,7 @@ const Cart = () => {
     >
       <div className="offcanvas-header">
         <h5 className="offcanvas-title" id="offcanvasExampleLabel">
-          Your Cart{total === 0 ? ' is empty' : ': $' + total}
+          Your cart{total === 0 ? ' is empty' : ': $' + total}
         </h5>
         <button
           type="button"
@@ -60,7 +61,16 @@ const Cart = () => {
             <div className="card-body">
               <h5 className="card-title">{item.itemName}</h5>
               <p className="card-text">{item.itemDesc}</p>
-              <p className="card-text">${item.itemPrice}</p>
+              <p className="card-text mb-0">
+                ${item.itemPrice}
+                Price: <strong>${item.itemPrice}</strong>
+              </p>{item.qty}
+              <p className="card-text">
+                Qty: <strong>{item.qty}</strong>
+              </p>
+              <h4 className="card-text mb-5">
+                Total: ${item.itemPrice * item.qty}
+              </h4>
               <button
                 type="button"
                 className="btn btn-danger"
