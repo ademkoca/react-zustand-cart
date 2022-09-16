@@ -7,7 +7,7 @@ const Navbar = ({ openCart, setOpenCart }) => {
   return (
     <nav className="navbar navbar-expand-lg bg-light">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="/">
           Navbar
         </a>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useItemseStore } from '../store';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
   const [openCart, setOpenCart] = useState(false);
@@ -64,7 +65,8 @@ const Cart = () => {
               <p className="card-text mb-0">
                 ${item.itemPrice}
                 Price: <strong>${item.itemPrice}</strong>
-              </p>{item.qty}
+              </p>
+              {item.qty}
               <p className="card-text">
                 Qty: <strong>{item.qty}</strong>
               </p>
@@ -82,7 +84,13 @@ const Cart = () => {
           </div>
         ))}
         {total !== 0 && (
-          <button className="btn btn-success w-100">Peoceed to checkout</button>
+          <Link
+            to="/checkout"
+            onClick={() => setOpenCart(false)}
+            className="btn btn-success w-100"
+          >
+            Proceed to checkout
+          </Link>
         )}
       </div>
     </div>

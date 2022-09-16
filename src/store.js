@@ -8,7 +8,7 @@ const itemsStore = (set) => ({
     set((state) => ({
       items: [item, ...state.items],
     }));
-    console.log(item);
+    // console.log(item);
   },
   updateCart: (productName) =>
     set(
