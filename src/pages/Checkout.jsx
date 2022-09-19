@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Checkout = () => {
   const items = useItemseStore((state) => state.items);
+  const clearItems = useItemseStore((state) => state.removeAllItems);
   const [promoOK, setPromoOK] = useState(false);
   const [promo, setPromo] = useState('');
   const [user, setUser] = useState({
@@ -17,6 +18,15 @@ const Checkout = () => {
     zip: '',
     cart: items,
   });
+  // const fNameVerified = false;
+  // const lNameVerified = false;
+  // const emailVerified = false;
+  // const addressVerified = false;
+  // const countryVerified = false;
+  // const stateVerified = false;
+  // const zipVerified = false;
+  // const fNameVerified = false;
+  // const fNameVerified = false;
   //   console.log(user);
   const verifyPromo = (e) => {
     e.preventDefault();
@@ -27,10 +37,28 @@ const Checkout = () => {
   items.forEach((item) => (total += item.itemPrice * item.qty));
   const submitForm = (e) => {
     e.preventDefault();
-    console.log(user);
+    // console.log(user);
+    clearItems();
+    window.location.href = '/order';
+  };
+  const [formValidated, setFormValidated] = useState(false);
+  const validate = () => {
+    if (
+      user.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i) &&
+      user.fName !== '' &&
+      user.lName !== '' &&
+      user.address !== '' &&
+      user.country !== '' &&
+      user.state !== '' &&
+      user.zip !== ''
+    ) {
+      setFormValidated(true);
+      // return true;
+      console.log('Form valdiated: ' + formValidated);
+    }
   };
   return (
-    <main>
+    <main className='px-3'>
       <div className="py-5 text-center">
         <i className="bi bi-check-circle-fill" style={{ fontSize: '3rem' }}></i>
         <h2>Checkout</h2>
@@ -41,7 +69,7 @@ const Checkout = () => {
         <div className="col-md-5 col-lg-4 order-md-last">
           <h4 className="d-flex justify-content-between align-items-center mb-3">
             <span className="text-primary">Your cart</span>
-            <span className="badge bg-primary rounded-pill d-flex align-items-center">
+            <span className="badge bg-primary rounded-pill d-flex align-items-center justify-content-center">
               {items.length}
             </span>
           </h4>
@@ -54,6 +82,8 @@ const Checkout = () => {
                 <div>
                   <h6 className="my-0">{item.itemName}</h6>
                   <small className="text-muted">{item.itemDesc}</small>
+                  <br />
+                  <small className="text-muted">Size: {item.size}</small>
                   <p className="text-muted">Qty: {item.qty}</p>
                   <p className="mb-0">
                     <strong>Total:</strong>
@@ -116,6 +146,7 @@ const Checkout = () => {
                   //   required
                   onChange={(e) => setUser({ ...user, fName: e.target.value })}
                   value={user.fName}
+                  onBlur={() => validate()}
                 />
                 <div className="invalid-feedback">
                   Valid first name is required.
@@ -134,6 +165,7 @@ const Checkout = () => {
                   required
                   onChange={(e) => setUser({ ...user, lName: e.target.value })}
                   value={user.lName}
+                  onBlur={() => validate()}
                 />
                 <div className="invalid-feedback">
                   Valid last name is required.
@@ -145,12 +177,14 @@ const Checkout = () => {
                   Email <span className="text-muted">(Optional)</span>
                 </label>
                 <input
+                  name="email"
                   type="email"
                   className="form-control"
                   id="email"
                   placeholder="you@example.com"
                   onChange={(e) => setUser({ ...user, email: e.target.value })}
                   value={user.email}
+                  onBlur={() => validate()}
                 />
                 <div className="invalid-feedback">
                   Please enter a valid email address for shipping updates.
@@ -171,6 +205,7 @@ const Checkout = () => {
                   onChange={(e) =>
                     setUser({ ...user, address: e.target.value })
                   }
+                  onBlur={() => validate()}
                 />
                 <div className="invalid-feedback">
                   Please enter your shipping address.
@@ -189,6 +224,7 @@ const Checkout = () => {
                     setUser({ ...user, country: e.target.value })
                   }
                   value={user.country}
+                  onBlur={() => validate()}
                 >
                   <option value="">Choose...</option>
                   <option>United States</option>
@@ -209,6 +245,7 @@ const Checkout = () => {
                   required
                   onChange={(e) => setUser({ ...user, state: e.target.value })}
                   value={user.state}
+                  onBlur={() => validate()}
                 >
                   <option value="">Choose...</option>
                   <option>California</option>
@@ -231,6 +268,7 @@ const Checkout = () => {
                   required
                   onChange={(e) => setUser({ ...user, zip: e.target.value })}
                   value={user.zip}
+                  onBlur={() => validate()}
                 />
                 <div className="invalid-feedback">Zip code required.</div>
               </div>
@@ -357,14 +395,14 @@ const Checkout = () => {
               </div>
             </div>
 
-            <Link
-              to="/order"
+            <button
               className="w-100 btn btn-primary btn-lg mt-5 mb-3"
+              disabled={!formValidated}
               type="submit"
               onClick={(e) => submitForm(e)}
             >
               Submit order
-            </Link>
+            </button>
           </form>
         </div>
       </div>

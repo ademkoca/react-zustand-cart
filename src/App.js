@@ -7,6 +7,8 @@ import Home from './pages/Home';
 import { useItemseStore } from './store';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Order from './pages/Order';
+import SingleProduct from './pages/SingleProduct';
+import Error from './pages/Error';
 
 const App = () => {
   // const items = useItemseStore((state) => state.items);
@@ -23,6 +25,8 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="checkout" element={<Checkout />} />
           <Route path="order" element={<Order />} />
+          <Route path="/product/:id" element={<SingleProduct />} />
+          <Route path="*" element={<Error />} />
         </Routes>
         {openCart && <Cart />}
       </BrowserRouter>

@@ -1,9 +1,29 @@
 import React from 'react';
 import { useState } from 'react';
 import { useItemseStore } from '../store';
+import { products } from '../products';
 
 const Navbar = ({ openCart, setOpenCart }) => {
   const items = useItemseStore((state) => state.items);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResult, setSearchResult] = useState({});
+  const [inputFocus, setInputFocus] = useState(false);
+  // console.log(inputFocus);
+  console.log(searchQuery);
+  const search = (e, val) => {
+    setSearchQuery(val);
+    e.preventDefault();
+    // setSearchQuery(val);
+    setTimeout(
+      () =>
+        setSearchResult(
+          products.filter((p) =>
+            p.productName.toUpperCase().startsWith(searchQuery.toUpperCase())
+          )
+        ),
+      2000
+    );
+  };
   return (
     <nav className="navbar navbar-expand-lg bg-light">
       <div className="container-fluid">
@@ -59,15 +79,34 @@ const Navbar = ({ openCart, setOpenCart }) => {
           </ul>
           <form className="d-flex" role="search">
             <input
-              className="form-control me-2"
+              className="form-control me-2 position-relative"
               type="search"
               placeholder="Search"
               aria-label="Search"
+              onChange={(e) => search(e, e.target.value)}
+              onFocus={() => setInputFocus(true)}
+              onBlur={() => setInputFocus(false)}
             />
-            <button className="btn btn-outline-success" type="submit">
+            <button
+              className="btn btn-outline-success"
+              onClick={(e) => search(e, searchQuery)}
+            >
               Search
             </button>
           </form>
+          {searchQuery !== '' && inputFocus && (
+            <ul className="list-group position-absolute search-results">
+              {searchResult.length !== 0 ? (
+                searchResult.map((res) => (
+                  <li key={res.id} className="list-group-item">
+                    {res.productName}
+                  </li>
+                ))
+              ) : (
+                <li className="list-group-item">No results</li>
+              )}
+            </ul>
+          )}
 
           {/* <i
             className="bi bi-cart2 fs-2 ms-2 position-relative"

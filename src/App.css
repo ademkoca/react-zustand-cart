@@ -36,3 +36,34 @@
     transform: rotate(360deg);
   }
 }
+
+.sale {
+  transform: translate(-55px, 8px) !important;
+  z-index: 10;
+}
+
+.product-sale {
+  transform: translate(6px, 8px) !important;
+  z-index: 10;
+}
+
+.search-results {
+  transform: translate(542%, 73%);
+  z-index: 10;
+}
+
+.card-body > a:link,
+.card-body > a:hover,
+.card-body > a:visited,
+.card-body > a:focus,
+.card-body > a:active {
+  text-decoration: none;
+  color: unset;
+}
+
+.error-screen {
+  /* background: url('../public/images/error.jpg'); */
+  height: 100vh;
+  object-fit: cover;
+  background-size: cover;
+}
