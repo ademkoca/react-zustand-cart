@@ -3,6 +3,7 @@ import { useItemseStore } from '../store';
 import { Link } from 'react-router-dom';
 
 const Cart = () => {
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [openCart, setOpenCart] = useState(false);
   const items = useItemseStore((state) => state.items);
   // console.log(items[0].itemImg);
@@ -33,11 +34,7 @@ const Cart = () => {
       <div className="offcanvas-body">
         {items.map((item) => (
           <div className="card my-3" style={{ width: '100%' }} key={item.id}>
-            <img
-              src={item.itemImg}
-              className="card-img-top"
-              alt="..."
-            />
+            <img src={PF + item.itemImg} className="card-img-top" alt="..." />
             <div className="card-body">
               <h5 className="card-title">{item.itemName}</h5>
               <p className="card-text">{item.itemDesc}</p>

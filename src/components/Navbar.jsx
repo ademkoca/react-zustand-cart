@@ -10,7 +10,7 @@ const Navbar = ({ openCart, setOpenCart }) => {
   const [searchResult, setSearchResult] = useState({});
   const [inputFocus, setInputFocus] = useState(false);
   // console.log(inputFocus);
-  console.log(searchQuery);
+  // console.log(searchQuery);
   const search = (e, val) => {
     setSearchQuery(val);
     e.preventDefault();
@@ -47,14 +47,21 @@ const Navbar = ({ openCart, setOpenCart }) => {
                 {categories.map((cat) => (
                   <li key={cat.id}>
                     <Link
-                      to={`categories/${cat.catId}`}
+                      to={`category/${cat.catId}`}
                       className="dropdown-item"
-                      href="#"
                     >
                       {cat.catName}
                     </Link>
                   </li>
                 ))}
+                <li>
+                  <hr className="dropdown-divider" />
+                </li>
+                <li>
+                  <Link className="dropdown-item" to="categories">
+                    All categories
+                  </Link>
+                </li>
               </ul>
             </li>
             <li className="nav-item dropdown">
@@ -71,7 +78,7 @@ const Navbar = ({ openCart, setOpenCart }) => {
                 {collections.map((col) => (
                   <li key={col.id}>
                     <Link
-                      to={`collections/${col.colId}`}
+                      to={`collection/${col.colId}`}
                       className="dropdown-item"
                       href="#"
                     >
@@ -79,6 +86,14 @@ const Navbar = ({ openCart, setOpenCart }) => {
                     </Link>
                   </li>
                 ))}
+                <li>
+                  <hr className="dropdown-divider" />
+                </li>
+                <li>
+                  <Link className="dropdown-item" to="collections">
+                    All collections
+                  </Link>
+                </li>
               </ul>
             </li>
           </ul>
@@ -88,9 +103,9 @@ const Navbar = ({ openCart, setOpenCart }) => {
               type="search"
               placeholder="Search"
               aria-label="Search"
-              onChange={(e) => search(e, e.target.value)}
-              onFocus={() => setInputFocus(true)}
-              onBlur={() => setInputFocus(false)}
+              // onChange={(e) => search(e, e.target.value)}
+              // onFocus={() => setInputFocus(true)}
+              // onBlur={() => setInputFocus(false)}
             />
             <button
               className="btn btn-outline-success"

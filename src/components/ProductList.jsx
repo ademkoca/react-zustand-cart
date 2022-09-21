@@ -3,15 +3,12 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useItemseStore } from '../store';
 
-const HomeProduct = ({ product }) => {
+const ProductList = ({ product }) => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const items = useItemseStore((state) => state.items);
   const addItemToCart = useItemseStore((state) => state.addToCart);
   const updateItem = useItemseStore((state) => state.updateCart);
   const [size, setSize] = useState('Size');
-  const getPrice = () => {
-    return product.salePrice !== 0 ? product.salePrice : product.price;
-  };
 
   const addToCart = (e) => {
     e.preventDefault();
@@ -54,7 +51,7 @@ const HomeProduct = ({ product }) => {
   };
   return (
     <div
-      className="card col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 col-xxl-3 p-2 my-1 mx-0 mx-xl-2 position-relative list-card"
+      className="card col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 col-xxl-3 p-2 my-1 mb-xl-3 mx-0 mx-xl-2 position-relative list-card"
       //   style={{ width: '18rem' }}
       key={product.id}
     >
@@ -64,7 +61,7 @@ const HomeProduct = ({ product }) => {
         </span>
       )}
       <Link to={`/product/${product.id}`}>
-        <img src={product.productImg} className="card-img-top" alt="..." />
+        <img src={PF + product.productImg} className="card-img-top" alt="..." />
       </Link>
       <div className="card-body">
         <Link to={`/product/${product.id}`}>
@@ -117,4 +114,4 @@ const HomeProduct = ({ product }) => {
   );
 };
 
-export default HomeProduct;
+export default ProductList;

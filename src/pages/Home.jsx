@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import HomeProduct from '../components/HomeProduct';
+import ProductList from '../components/ProductList';
 import CategoryDropdown from '../components/CategoryDropdown';
 import { products, categories } from '../products';
 import Slider from '../components/Slider';
@@ -23,12 +23,12 @@ const Home = () => {
       {/* <Helmet> */}
       {/* <title>Shup | Home</title> */}
       {/* </Helmet> */}
-      <div className="container-fluid px-0">
+      <div className="container-fluid px-0 mt-5">
         <Slider />
       </div>
       <div className="container-fluid px-4">
         <Popular />
-        <div className="dropdown">
+        {/* <div className="dropdown">
           <button
             className="btn btn-secondary dropdown-toggle"
             type="button"
@@ -54,14 +54,14 @@ const Home = () => {
               </li>
             ))}
           </ul>
-        </div>
+        </div> */}
       </div>
-      <div className="container d-flex flex-wrap row justify-content-around justify-content-lg-start mw-100 p-1 mx-0 mx-lg-2">
+      {/* <div className="container d-flex flex-wrap row justify-content-around justify-content-lg-start mw-100 p-1 mx-0 mx-lg-2">
         {filtered.length === 0 || category === ''
-          ? products.map((p) => <HomeProduct product={p} key={p.id} />)
-          : filtered.map((f) => <HomeProduct product={f} key={f.id} />)}
-      </div>
-      {/* <Join /> */}
+          ? products.map((p) => <ProductList product={p} key={p.id} />)
+          : filtered.map((f) => <ProductList product={f} key={f.id} />)}
+      </div> */}
+      <Join />
     </>
   );
 };
