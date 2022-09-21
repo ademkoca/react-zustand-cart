@@ -13,28 +13,6 @@ const Cart = () => {
   // console.log(items);
   const removeItem = useItemseStore((state) => state.removeItem);
   return (
-    // <div>
-    //   Total items in the cart: {items.length}
-    //   {openCart && (
-    //     <div>
-    //       {items.map((item) => (
-    //         <div key={item.id}>
-    //           <p>{item.itemName}</p>
-    //           <span>
-    //             <button onClick={() => removeItem(item.id)}>
-    //               Remove from cart
-    //             </button>
-    //           </span>
-    //         </div>
-    //       ))}
-    //     </div>
-    //   )}
-    //   {items.length !== 0 && (
-    //     <button onClick={() => setOpenCart((prev) => !prev)}>
-    //       {!openCart ? 'Show' : 'Hide'} cart items
-    //     </button>
-    //   )}
-    // </div>
     <div
       className={`offcanvas offcanvas-end ${openCart ? 'show' : ''}`}
       tabIndex="-1"
@@ -55,7 +33,11 @@ const Cart = () => {
       <div className="offcanvas-body">
         {items.map((item) => (
           <div className="card my-3" style={{ width: '100%' }} key={item.id}>
-            <img src={item.itemImg} className="card-img-top" alt="..." />
+            <img
+              src={item.itemImg}
+              className="card-img-top"
+              alt="..."
+            />
             <div className="card-body">
               <h5 className="card-title">{item.itemName}</h5>
               <p className="card-text">{item.itemDesc}</p>

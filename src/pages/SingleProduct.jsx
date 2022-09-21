@@ -56,7 +56,7 @@ const SingleProduct = () => {
   };
   //   console.log(typeof id);
   return (
-    <div className="container d-flex flex-wrap">
+    <div className="container d-flex flex-wrap mt-5 pt-4">
       <div className="card mb-3">
         <div className="row g-0">
           <div className="col-md-6">
@@ -66,7 +66,7 @@ const SingleProduct = () => {
               </span>
             )}
             <img
-              src={PF + product.productImg}
+              src={PF+ product.productImg}
               className="img-fluid rounded-start position-relative"
               alt="..."
             />

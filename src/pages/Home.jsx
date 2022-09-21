@@ -5,6 +5,7 @@ import { products, categories } from '../products';
 import Slider from '../components/Slider';
 import Popular from '../components/Popular';
 import Join from '../components/Join';
+// import { Helmet } from 'react-helmet';
 
 const Home = () => {
   // const [content, setContent] = useState(products);
@@ -19,11 +20,9 @@ const Home = () => {
   // console.log(categories);
   return (
     <>
-      {/* <CategoryDropdown
-        categories={categories}
-        content={content}
-        setContent={setContent}
-      /> */}
+      {/* <Helmet> */}
+      {/* <title>Shup | Home</title> */}
+      {/* </Helmet> */}
       <div className="container-fluid px-0">
         <Slider />
       </div>
@@ -62,7 +61,7 @@ const Home = () => {
           ? products.map((p) => <HomeProduct product={p} key={p.id} />)
           : filtered.map((f) => <HomeProduct product={f} key={f.id} />)}
       </div>
-      <Join />
+      {/* <Join /> */}
     </>
   );
 };

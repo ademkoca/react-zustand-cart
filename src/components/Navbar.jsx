@@ -1,7 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 import { useItemseStore } from '../store';
-import { products } from '../products';
+import { products, collections, categories } from '../products';
+import { Link } from 'react-router-dom';
 
 const Navbar = ({ openCart, setOpenCart }) => {
   const items = useItemseStore((state) => state.items);
@@ -25,22 +26,36 @@ const Navbar = ({ openCart, setOpenCart }) => {
     );
   };
   return (
-    <nav className="navbar navbar-expand-lg bg-light">
+    <nav className="navbar navbar-expand-lg bg-light fixed-top">
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
-          Navbar
+          Shopkiličica
         </a>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
-                Home
+            <li className="nav-item dropdown">
+              <a
+                className="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Categories
               </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Link
-              </a>
+              <ul className="dropdown-menu">
+                {categories.map((cat) => (
+                  <li key={cat.id}>
+                    <Link
+                      to={`categories/${cat.catId}`}
+                      className="dropdown-item"
+                      href="#"
+                    >
+                      {cat.catName}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </li>
             <li className="nav-item dropdown">
               <a
@@ -50,31 +65,21 @@ const Navbar = ({ openCart, setOpenCart }) => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Dropdown
+                Collections
               </a>
               <ul className="dropdown-menu">
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Action
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Another action
-                  </a>
-                </li>
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Something else here
-                  </a>
-                </li>
+                {collections.map((col) => (
+                  <li key={col.id}>
+                    <Link
+                      to={`collections/${col.colId}`}
+                      className="dropdown-item"
+                      href="#"
+                    >
+                      {col.colName}
+                    </Link>
+                  </li>
+                ))}
               </ul>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link disabled">Disabled</a>
             </li>
           </ul>
           <form className="d-flex" role="search">

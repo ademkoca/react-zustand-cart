@@ -12,22 +12,17 @@ const Checkout = () => {
     fName: '',
     lName: '',
     email: '',
+    phone: '',
     address: '',
     country: '',
     state: '',
     zip: '',
     cart: items,
   });
-  // const fNameVerified = false;
-  // const lNameVerified = false;
-  // const emailVerified = false;
-  // const addressVerified = false;
-  // const countryVerified = false;
-  // const stateVerified = false;
-  // const zipVerified = false;
-  // const fNameVerified = false;
-  // const fNameVerified = false;
-  //   console.log(user);
+  const [isSameAddress, setIsSameAddress] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState('card');
+  // console.log('Card checked: ' + cardChecked);
+  // console.log('Cash checked: ' + cashChecked);
   const verifyPromo = (e) => {
     e.preventDefault();
     if (promo === 'BEBA') setPromoOK(true);
@@ -48,6 +43,7 @@ const Checkout = () => {
       user.fName !== '' &&
       user.lName !== '' &&
       user.address !== '' &&
+      user.phone !== '' &&
       user.country !== '' &&
       user.state !== '' &&
       user.zip !== ''
@@ -58,7 +54,7 @@ const Checkout = () => {
     }
   };
   return (
-    <main className='px-3'>
+    <main className="px-3 mt-5">
       <div className="py-5 text-center">
         <i className="bi bi-check-circle-fill" style={{ fontSize: '3rem' }}></i>
         <h2>Checkout</h2>
@@ -192,6 +188,25 @@ const Checkout = () => {
               </div>
 
               <div className="col-12">
+                <label htmlFor="phone" className="form-label">
+                  Phone
+                </label>
+                <input
+                  name="phone"
+                  type="phone"
+                  className="form-control"
+                  id="phone"
+                  
+                  onChange={(e) => setUser({ ...user, phone: e.target.value })}
+                  value={user.phone}
+                  onBlur={() => validate()}
+                />
+                <div className="invalid-feedback">
+                  Please enter a valid phone number for shipping updates.
+                </div>
+              </div>
+
+              <div className="col-12">
                 <label htmlFor="address" className="form-label">
                   Address
                 </label>
@@ -281,6 +296,7 @@ const Checkout = () => {
                 type="checkbox"
                 className="form-check-input"
                 id="same-address"
+                onChange={() => setIsSameAddress((prev) => !prev)}
               />
               <label className="form-check-label" htmlFor="same-address">
                 Shipping address is the same as my billing address
@@ -297,6 +313,141 @@ const Checkout = () => {
                 Save this information for next time
               </label>
             </div>
+            {!isSameAddress && (
+              <>
+                <hr className="my-4" />
+                <h4 className="mb-3">Shipping address</h4>
+                <div className="row g-3">
+                  <div className="col-sm-6">
+                    <label htmlFor="firstName" className="form-label">
+                      First name
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="firstName"
+                      placeholder=""
+                      //   required
+                      onChange={(e) =>
+                        setUser({ ...user, fName: e.target.value })
+                      }
+                      value={user.fName}
+                      onBlur={() => validate()}
+                    />
+                    <div className="invalid-feedback">
+                      Valid first name is required.
+                    </div>
+                  </div>
+
+                  <div className="col-sm-6">
+                    <label htmlFor="lastName" className="form-label">
+                      Last name
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="lastName"
+                      placeholder=""
+                      required
+                      onChange={(e) =>
+                        setUser({ ...user, lName: e.target.value })
+                      }
+                      value={user.lName}
+                      onBlur={() => validate()}
+                    />
+                    <div className="invalid-feedback">
+                      Valid last name is required.
+                    </div>
+                  </div>
+
+                  <div className="col-12">
+                    <label htmlFor="address" className="form-label">
+                      Address
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="address"
+                      placeholder="1234 Main St"
+                      required
+                      value={user.address}
+                      onChange={(e) =>
+                        setUser({ ...user, address: e.target.value })
+                      }
+                      onBlur={() => validate()}
+                    />
+                    <div className="invalid-feedback">
+                      Please enter your shipping address.
+                    </div>
+                  </div>
+
+                  <div className="col-md-5">
+                    <label htmlFor="country" className="form-label">
+                      Country
+                    </label>
+                    <select
+                      className="form-select"
+                      id="country"
+                      required
+                      onChange={(e) =>
+                        setUser({ ...user, country: e.target.value })
+                      }
+                      value={user.country}
+                      onBlur={() => validate()}
+                    >
+                      <option value="">Choose...</option>
+                      <option>United States</option>
+                      <option>Serbia</option>
+                    </select>
+                    <div className="invalid-feedback">
+                      Please select a valid country.
+                    </div>
+                  </div>
+
+                  <div className="col-md-4">
+                    <label htmlFor="state" className="form-label">
+                      State
+                    </label>
+                    <select
+                      className="form-select"
+                      id="state"
+                      required
+                      onChange={(e) =>
+                        setUser({ ...user, state: e.target.value })
+                      }
+                      value={user.state}
+                      onBlur={() => validate()}
+                    >
+                      <option value="">Choose...</option>
+                      <option>California</option>
+                      <option>Serbia</option>
+                    </select>
+                    <div className="invalid-feedback">
+                      Please provide a valid state.
+                    </div>
+                  </div>
+
+                  <div className="col-md-3">
+                    <label htmlFor="zip" className="form-label">
+                      Zip
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="zip"
+                      placeholder=""
+                      required
+                      onChange={(e) =>
+                        setUser({ ...user, zip: e.target.value })
+                      }
+                      value={user.zip}
+                      onBlur={() => validate()}
+                    />
+                    <div className="invalid-feedback">Zip code required.</div>
+                  </div>
+                </div>
+              </>
+            )}
 
             <hr className="my-4" />
 
@@ -311,8 +462,9 @@ const Checkout = () => {
                   className="form-check-input"
                   //   defaultValue
                   required
-                  onChange={(e) => setUser({ ...user, cCard: e.target.value })}
-                  value={user.cCard}
+                  onChange={() => setPaymentMethod('card')}
+                  checked={paymentMethod === 'card'}
+                  // value={user.cCard}
                 />
                 <label className="form-check-label" htmlFor="credit">
                   Credit card
@@ -325,6 +477,8 @@ const Checkout = () => {
                   type="radio"
                   className="form-check-input"
                   required
+                  onChange={() => setPaymentMethod('cash')}
+                  checked={paymentMethod === 'cash'}
                 />
                 <label className="form-check-label" htmlFor="cash">
                   Cash on delivery
@@ -332,68 +486,105 @@ const Checkout = () => {
               </div>
             </div>
 
-            <div className="row gy-3">
-              <div className="col-md-6">
-                <label htmlFor="cc-name" className="form-label">
-                  Name on card
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="cc-name"
-                  placeholder=""
-                  required
-                />
-                <small className="text-muted">
-                  Full name as displayed on card
-                </small>
-                <div className="invalid-feedback">Name on card is required</div>
-              </div>
+            {paymentMethod === 'card' && (
+              <div className="row gy-3">
+                <div className="col-md-6">
+                  <label htmlFor="cc-name" className="form-label">
+                    Name on card
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="cc-name"
+                    placeholder=""
+                    required
+                  />
+                  <small className="text-muted">
+                    Full name as displayed on card
+                  </small>
+                  <div className="invalid-feedback">
+                    Name on card is required
+                  </div>
+                </div>
 
-              <div className="col-md-6">
-                <label htmlFor="cc-number" className="form-label">
-                  Credit card number
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="cc-number"
-                  placeholder=""
-                  required
-                />
-                <div className="invalid-feedback">
-                  Credit card number is required
+                <div className="col-md-6">
+                  <label htmlFor="cc-number" className="form-label">
+                    Credit card number
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="cc-number"
+                    placeholder=""
+                    required
+                  />
+                  <div className="invalid-feedback">
+                    Credit card number is required
+                  </div>
+                </div>
+
+                <div className="col-md-3">
+                  <label htmlFor="cc-expiration" className="form-label">
+                    Expiration
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="cc-expiration"
+                    placeholder=""
+                    required
+                  />
+                  <div className="invalid-feedback">
+                    Expiration date required
+                  </div>
+                </div>
+
+                <div className="col-md-3">
+                  <label htmlFor="cc-cvv" className="form-label">
+                    CVV
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="cc-cvv"
+                    placeholder=""
+                    required
+                  />
+                  <div className="invalid-feedback">Security code required</div>
                 </div>
               </div>
+            )}
 
-              <div className="col-md-3">
-                <label htmlFor="cc-expiration" className="form-label">
-                  Expiration
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="cc-expiration"
-                  placeholder=""
-                  required
-                />
-                <div className="invalid-feedback">Expiration date required</div>
-              </div>
-
-              <div className="col-md-3">
-                <label htmlFor="cc-cvv" className="form-label">
-                  CVV
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="cc-cvv"
-                  placeholder=""
-                  required
-                />
-                <div className="invalid-feedback">Security code required</div>
-              </div>
-            </div>
+            {paymentMethod === 'cash' && (
+              <>
+                <p className="mt-4 mb-1">
+                  The shipping will be delivered to the{' '}
+                  <strong>Billing address</strong>:
+                </p>
+                <ul style={{ listStyleType: 'none', paddingLeft: '0px' }}>
+                  <li>
+                    <em>
+                      {user.fName} {user.lName}
+                    </em>
+                  </li>
+                  <em>
+                    <li>{user.address}</li>
+                  </em>
+                  <em>
+                    <li>{user.country}</li>
+                  </em>
+                  <em>
+                    <li>{user.state}</li>
+                  </em>
+                  <em>
+                    <li>{user.zip}</li>
+                  </em>
+                  <em>
+                    <li>{user.phone}</li>
+                  </em>
+                </ul>
+              </>
+            )}
 
             <button
               className="w-100 btn btn-primary btn-lg mt-5 mb-3"

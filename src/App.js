@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Order from './pages/Order';
 import SingleProduct from './pages/SingleProduct';
 import Error from './pages/Error';
+import { Helmet } from 'react-helmet';
 
 const App = () => {
   // const items = useItemseStore((state) => state.items);
@@ -19,6 +20,7 @@ const App = () => {
   const [openCart, setOpenCart] = useState(true);
   return (
     <>
+      {/* <Helmet> */}
       <BrowserRouter>
         <Navbar openCart={openCart} setOpenCart={setOpenCart} />
         <Routes>
@@ -30,17 +32,7 @@ const App = () => {
         </Routes>
         {openCart && <Cart />}
       </BrowserRouter>
-      {/* <form>
-        <h1>Add new item to the cart:</h1>
-        <input
-          type="text"
-          value={itemName}
-          onChange={(e) => setItemName(e.target.value)}
-        />
-        <button onClick={(e) => addToCart(e)}>Add to cart</button>
-      </form>
-
-      <button onClick={remove}>Remove all items</button> */}
+      {/* </Helmet> */}
     </>
   );
 };

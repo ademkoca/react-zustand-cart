@@ -28,7 +28,7 @@ const HomeProduct = ({ product }) => {
           id: Math.ceil(Math.random() * 1000000),
           itemName: product.productName,
           itemDesc: product.productDesc,
-          itemImg: PF + product.productImg,
+          itemImg: product.productImg,
           itemPrice:
             product.salePrice !== 0 ? product.salePrice : product.price,
           size: size,
@@ -64,11 +64,7 @@ const HomeProduct = ({ product }) => {
         </span>
       )}
       <Link to={`/product/${product.id}`}>
-        <img
-          src={`images/${product.productImg}`}
-          className="card-img-top"
-          alt="..."
-        />
+        <img src={product.productImg} className="card-img-top" alt="..." />
       </Link>
       <div className="card-body">
         <Link to={`/product/${product.id}`}>
