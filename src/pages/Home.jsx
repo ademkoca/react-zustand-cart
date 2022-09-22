@@ -23,7 +23,7 @@ const Home = () => {
       {/* <Helmet> */}
       {/* <title>Shup | Home</title> */}
       {/* </Helmet> */}
-      <div className="container-fluid px-0 mt-5">
+      <div className="container-fluid px-0 mt-5 ">
         <Slider />
       </div>
       <div className="container-fluid px-4">

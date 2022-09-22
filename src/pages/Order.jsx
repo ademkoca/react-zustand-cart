@@ -5,9 +5,9 @@ import { useItemseStore } from '../store';
 const Order = () => {
   return (
     <main>
-      <div className="py-5 text-center">
+      <div className="py-5 text-center fullScreen">
         <i
-          className="bi bi-check-circle-fill text-success"
+          className="bi bi-check-circle-fill text-success "
           style={{ fontSize: '3rem' }}
         ></i>
         <h2>Thank you for your order!</h2>

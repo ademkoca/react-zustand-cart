@@ -7,6 +7,7 @@ const Category = () => {
   const { cat } = useParams();
   //   console.log(cat);
   const product = products.filter((p) => p.category === cat);
+  // console.log(product.length);
   //   console.log(product);
   return (
     <>
@@ -16,10 +17,12 @@ const Category = () => {
         </strong>{' '}
         category
       </h1>
-      <div className="container mt-5 pt-4 d-flex flex-wrap justify-content-evenly">
-        {product.map((p) => (
-          <ProductList product={p} key={p.id} />
-        ))}
+      <div className="container mt-5 pt-4 d-flex flex-wrap justify-content-evenly fullScreen">
+        {product.length !== 0 ? (
+          product.map((p) => <ProductList product={p} key={p.id} />)
+        ) : (
+          <h3>There are no products in this category yet</h3>
+        )}
       </div>
     </>
   );

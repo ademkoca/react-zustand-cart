@@ -196,7 +196,6 @@ const Checkout = () => {
                   type="phone"
                   className="form-control"
                   id="phone"
-                  
                   onChange={(e) => setUser({ ...user, phone: e.target.value })}
                   value={user.phone}
                   onBlur={() => validate()}
@@ -561,27 +560,39 @@ const Checkout = () => {
                   The shipping will be delivered to the{' '}
                   <strong>Billing address</strong>:
                 </p>
-                <ul style={{ listStyleType: 'none', paddingLeft: '0px' }}>
+                <ul
+                  className="card p-3"
+                  style={{ listStyleType: 'none', paddingLeft: '0px' }}
+                >
                   <li>
-                    <em>
-                      {user.fName} {user.lName}
-                    </em>
+                    <strong>Name: </strong>
+                    {user.fName} {user.lName}
                   </li>
-                  <em>
-                    <li>{user.address}</li>
-                  </em>
-                  <em>
-                    <li>{user.country}</li>
-                  </em>
-                  <em>
-                    <li>{user.state}</li>
-                  </em>
-                  <em>
-                    <li>{user.zip}</li>
-                  </em>
-                  <em>
-                    <li>{user.phone}</li>
-                  </em>
+
+                  <li>
+                    <strong>Address: </strong>
+                    {user.address}
+                  </li>
+
+                  <li>
+                    <strong>Country: </strong>
+                    {user.country}
+                  </li>
+
+                  <li>
+                    <strong>State: </strong>
+                    {user.state}
+                  </li>
+
+                  <li>
+                    <strong>ZIP: </strong>
+                    {user.zip}
+                  </li>
+
+                  <li>
+                    <strong>Phone: </strong>
+                    {user.phone}
+                  </li>
                 </ul>
               </>
             )}

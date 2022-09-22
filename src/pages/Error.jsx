@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 
 const Error = () => {
   return (
-    <div className="px-4 py-5 my-5 text-center error-screen">
+    <div className="px-4 py-5 my-5 text-center error-screen fullScreen">
       <h1 className="display-5 fw-bold text-dark">NOT FOUND</h1>
       <div className="col-lg-6 mx-auto">
         <p className="lead mb-4 text-dark">
-          It looks like the page you requested doesn't exist. 
+          It looks like the page you requested doesn't exist.
         </p>
         <p className="lead mb-4 text-dark">
           You can go back and see other products in our shop

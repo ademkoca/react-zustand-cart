@@ -14,6 +14,10 @@ import Collections from './pages/Collections';
 import Collection from './pages/Collection';
 import Error from './pages/Error';
 import { Helmet } from 'react-helmet';
+import Footer from './components/Footer';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Profile from './pages/Profile';
 
 const App = () => {
   // const items = useItemseStore((state) => state.items);
@@ -36,11 +40,15 @@ const App = () => {
           <Route path="/category/:cat" element={<Category />} />
           <Route path="/collections" element={<Collections />} />
           <Route path="/collection/:col" element={<Collection />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route path="profile/:username" element={<Profile />} />
           <Route path="*" element={<Error />} />
         </Routes>
         {openCart && <Cart />}
+        {/* </Helmet> */}
+        <Footer />
       </BrowserRouter>
-      {/* </Helmet> */}
     </>
   );
 };

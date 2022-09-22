@@ -1,11 +1,16 @@
 import React from 'react';
 import { useState } from 'react';
 import { useItemseStore } from '../store';
+import { useUserStore } from '../user';
 import { products, collections, categories } from '../products';
 import { Link } from 'react-router-dom';
 
 const Navbar = ({ openCart, setOpenCart }) => {
   const items = useItemseStore((state) => state.items);
+  const user = useUserStore((state) => state.user);
+  // console.log(JSON.stringify(user));
+  const logoutUser = useUserStore((state) => state.logout);
+  // console.log(user);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResult, setSearchResult] = useState({});
   const [inputFocus, setInputFocus] = useState(false);
@@ -24,6 +29,10 @@ const Navbar = ({ openCart, setOpenCart }) => {
         ),
       2000
     );
+  };
+  const handleSignout = () => {
+    logoutUser();
+    window.location.href = '/';
   };
   return (
     <nav className="navbar navbar-expand-lg bg-light fixed-top">
@@ -45,7 +54,7 @@ const Navbar = ({ openCart, setOpenCart }) => {
               </a>
               <ul className="dropdown-menu">
                 {categories.map((cat) => (
-                  <li key={cat.id}>
+                  <li key={cat.catId}>
                     <Link
                       to={`category/${cat.catId}`}
                       className="dropdown-item"
@@ -76,7 +85,7 @@ const Navbar = ({ openCart, setOpenCart }) => {
               </a>
               <ul className="dropdown-menu">
                 {collections.map((col) => (
-                  <li key={col.id}>
+                  <li key={col.colId}>
                     <Link
                       to={`collection/${col.colId}`}
                       className="dropdown-item"
@@ -135,9 +144,9 @@ const Navbar = ({ openCart, setOpenCart }) => {
             aria-controls="offcanvasExample"
             onClick={() => setOpenCart(true)}
           >
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
               99+
-              <span class="visually-hidden">unread messages</span>
+              <span className="visually-hidden">unread messages</span>
             </span>
           </i> */}
         </div>
@@ -151,6 +160,46 @@ const Navbar = ({ openCart, setOpenCart }) => {
           >
             Cart <span className="badge text-bg-secondary">{items.length}</span>
           </button>
+          {JSON.stringify(user) !== '{}' ? (
+            <div className="btn-group">
+              <button
+                type="button"
+                className="btn btn-primary dropdown-toggle me-2"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                {user.username}
+              </button>
+              <ul className="dropdown-menu">
+                <li>
+                  <Link
+                    to={`/profile/${user.username}`}
+                    className="dropdown-item"
+                    href="#"
+                  >
+                    My Profile
+                  </Link>
+                </li>
+
+                <li>
+                  <hr className="dropdown-divider" />
+                </li>
+                <li>
+                  <button
+                    onClick={handleSignout}
+                    className="dropdown-item"
+                    href="#"
+                  >
+                    Sign out
+                  </button>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <Link to="/login">
+              <button className="btn btn-primary me-2">Sign in</button>
+            </Link>
+          )}
           <button
             className="navbar-toggler"
             type="button"

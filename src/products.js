@@ -8,9 +8,9 @@ export const products = [
     productImg: 'images/products/nike-sneakers.png',
     size: [41, 42, 43, 44, 45, 46],
     price: 200,
-    salePrice: 99,
+    salePrice: 0,
     category: 'shoes',
-    collection: ['on-sale', 'new-collection', 'autmn-winter-2022'],
+    collection: ['on-sale', 'new', 'autmn-winter-2022'],
   },
   {
     id: 5,
@@ -23,7 +23,7 @@ export const products = [
     price: 300,
     salePrice: 199,
     category: 'shoes',
-    collection: ['on-sale', 'new-collection', 'autmn-winter-2022'],
+    collection: ['on-sale', 'new', 'autmn-winter-2022'],
   },
   {
     id: 2,
@@ -36,7 +36,7 @@ export const products = [
     price: 300,
     salePrice: 249,
     category: 'shoes',
-    collection: ['on-sale', 'new-collection', 'autmn-winter-2022'],
+    collection: ['on-sale', 'new', 'autmn-winter-2022'],
   },
   {
     id: 3,
@@ -62,7 +62,7 @@ export const products = [
     price: 300,
     salePrice: 199,
     category: 'clothing',
-    collection: ['on-sale', 'new-collection'],
+    collection: ['on-sale', 'new'],
   },
   {
     id: 6,
@@ -88,7 +88,7 @@ export const products = [
     price: 300,
     salePrice: 199,
     category: 'shoes',
-    collection: ['on-sale', 'new-collection', 'autmn-winter-2022'],
+    collection: ['on-sale', 'new', 'autmn-winter-2022'],
   },
   {
     id: 8,
@@ -101,7 +101,7 @@ export const products = [
     price: 300,
     salePrice: 199,
     category: 'shoes',
-    collection: ['on-sale', 'autmn-winter-2022'],
+    collection: ['on-sale'],
   },
   {
     id: 9,
@@ -114,7 +114,7 @@ export const products = [
     price: 300,
     salePrice: 199,
     category: 'clothing',
-    collection: ['on-sale', 'new-collection'],
+    collection: ['on-sale', 'new'],
   },
   {
     id: 10,
@@ -153,7 +153,7 @@ export const products = [
     price: 300,
     salePrice: 199,
     category: 'shoes',
-    collection: ['on-sale', 'autmn-winter-2022'],
+    collection: ['autmn-winter-2022'],
   },
   {
     id: 13,
@@ -213,23 +213,38 @@ export const categories = [
   {
     catId: 'shoes',
     catName: 'Shoes',
+    catImg: 'images/slides/shoes-category.jpg',
   },
   {
     catId: 'clothing',
     catName: 'Clothing',
+    catImg: 'images/slides/clothing-category.jpg',
+  },
+  {
+    catId: 'accessories',
+    catName: 'Accesories',
+    catImg: 'images/slides/accessories-category.jpg',
   },
 ];
 export const collections = [
   {
     colId: 'autmn-winter-2022',
     colName: 'Autmn/Winter 2022',
+    colImg: 'images/slides/slide1.png',
   },
   {
-    colId: 'new-collection',
-    colName: 'New Collection',
+    colId: 'new',
+    colName: 'New',
+    colImg: 'images/slides/slide2.png',
   },
   {
     colId: 'on-sale',
     colName: 'ON SALE',
+    colImg: 'images/slides/slide3.png',
+  },
+  {
+    colId: 'best-sellers',
+    colName: 'Best sellers',
+    colImg: 'images/slides/slide4.jpg',
   },
 ];
